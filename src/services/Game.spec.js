@@ -21,8 +21,6 @@ describe('Game', () => {
         const game = new Game(field);
 
         const player = new Player();
-        player.position.x = 1;
-        player.position.y = 2;
 
         const movement = {
             id: player.id,
@@ -33,6 +31,9 @@ describe('Game', () => {
         };
 
         game.addPlayer(player);
+        player.position.x = 1;
+        player.position.y = 2;
+
         game.movePlayer(movement);
 
         expect(game.players[0].position.x).toBe(2);
@@ -44,8 +45,6 @@ describe('Game', () => {
         const game = new Game(field);
 
         const player = new Player();
-        player.position.x = 0;
-        player.position.y = 0;
 
         const movement = {
             id: player.id,
@@ -56,6 +55,9 @@ describe('Game', () => {
         };
 
         game.addPlayer(player);
+        player.position.x = 0;
+        player.position.y = 0;
+        
         game.movePlayer(movement);
 
         expect(game.players[0].position.x).toBe(0);
@@ -67,8 +69,6 @@ describe('Game', () => {
         const game = new Game(field);
 
         const player = new Player();
-        player.position.x = 1;
-        player.position.y = 2;
 
         const movement = {
             id: player.id,
@@ -79,9 +79,24 @@ describe('Game', () => {
         };
 
         game.addPlayer(player);
+        
+        player.position.x = 1;
+        player.position.y = 2;
+
         game.movePlayer(movement);
 
         expect(game.players[0].position.x).toBe(1);
         expect(game.players[0].position.y).toBe(2);
+    });
+
+    it('Should add player with new position', () => {
+        const field = new Field(8, 8);
+        const game = new Game(field);
+
+        const player = new Player();
+        game.addPlayer(player);
+
+        expect(game.players[0].position.x).toBeGreaterThanOrEqual(0);
+        expect(game.players[0].position.y).toBeGreaterThanOrEqual(0);
     });
 });

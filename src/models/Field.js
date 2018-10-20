@@ -2,6 +2,31 @@ class Field{
     constructor(rows, columns){
         this.rows = rows;
         this.columns = columns;
+        
+        this.field = [];
+
+        for (let i = 0; i < this.rows; i++) {
+            let row = [];
+            for (let j = 0; j < this.columns; j++) {
+                row.push(true);        
+            }
+            this.field.push(row);
+        }
+    }
+
+    getFreePosition(){
+
+        let x = Math.floor(Math.random() * (this.rows));
+        let y = Math.floor(Math.random() * (this.columns));
+
+        while (this.field[y][x] === false) {
+            x = Math.floor(Math.random() * (this.rows));
+            y = Math.floor(Math.random() * (this.columns));
+        }
+
+        this.field[y][x] = false;
+
+        return { x, y };
     }
 
     checkMovement(player, move){

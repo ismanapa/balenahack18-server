@@ -7,6 +7,7 @@ class Game {
 
     addPlayer(player){
         this.players.push(player);
+        player.position = this.field.getFreePosition();
     }
 
     movePlayer(movement){
