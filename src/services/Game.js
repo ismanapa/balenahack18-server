@@ -12,6 +12,10 @@ class Game {
 
     movePlayer(movement){
         const player = this.players.find((x) => x.id === movement.id); //object
+
+        if(typeof player === 'undefined')
+            return;
+
         let isLegal = this.field.checkMovement(player, movement.move);
         if (isLegal){
             player.setPosition(movement.move);

@@ -11,7 +11,7 @@ const Field = require('./models/Field');
 //  res.sendFile(__dirname + '/index.html');
 // });
 
-const field = new Field(8, 8);
+const field = new Field(7, 7);
 
 const game = new Game(field);
 
@@ -29,12 +29,14 @@ io.on('connection', function(client){
     console.log('User Conected', newPlayer.id);
 
     client.emit(events.emit.start, newPlayer);
+    io.sockets.emit(events.emit.update, game.players);
 
     client.on(events.on.move, (movement) => {
         
         game.movePlayer(movement);
-        
+        console.log('Player moved', movement)
         io.sockets.emit(events.emit.update, game.players);
+        console.log('Positions sent', game.players)
     });
 
 

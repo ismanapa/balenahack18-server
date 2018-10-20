@@ -36,9 +36,14 @@ class Field{
         if (newX < 0 || newY < 0) {
             return false;
         }
+
         if (newX > this.rows || newY > this.columns){
             return false;
         }
+
+        // if(this.field[newY][newX] === false){
+        //     return false;
+        // }
 
         return true;
     }
