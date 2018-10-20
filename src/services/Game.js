@@ -11,8 +11,11 @@ class Game {
 
     movePlayer(movement){
         const player = this.players.find((x) => x.id === movement.id); //object
-        player.position.x = movement.x;
-        player.position.y = movement.y;
+        let isLegal = this.field.checkMovement(player, movement.move);
+        if (isLegal){
+            player.setPosition(movement.move);
+        }
+        
     }
 }
 
