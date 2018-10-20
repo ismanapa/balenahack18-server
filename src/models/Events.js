@@ -1,3 +1,9 @@
 module.exports = {
-    start: 'start'
+    emit: {
+        start: 'start',
+        update: 'update'
+    },
+    on: {
+        move: 'move'
+    }
 };

@@ -28,7 +28,15 @@ io.on('connection', function(client){
 
     console.log('User Conected', newPlayer.id);
 
-    client.emit(events.start, newPlayer);
+    client.emit(events.emit.start, newPlayer);
+
+    client.on(events.on.move, (movement) => {
+        
+        game.movePlayer(movement);
+        
+        io.sockets.emit(events.emit.update, game.players);
+    });
+
 
  });
 
